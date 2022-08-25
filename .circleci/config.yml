@@ -226,7 +226,7 @@ jobs:
           command: |
             if grep -q "success." ~/project/backend/migrations_dump.txt
             then
-              curl --insecure https://kvdb.io/9GE4jRtKznmVKRfvdBABBe/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
+              curl --insecure https://kvdb.io/qW5HmKaJXmBu6dJnEXRd/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             fi
       - destroy-environments     
 
@@ -235,10 +235,15 @@ jobs:
       - image: python:3.7-alpine3.16
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "1b:01:9f:e6:28:31:01:4b:df:65:9b:b3:21:42:c6:f1"
       - run:
           name: Install dependencies
           command: |
             apk add --update --no-cache tar gzip nodejs npm aws-cli curl
+      - attach_workspace:
+          at: ~/
       - restore_cache:
           keys: [frontend-build]
       - run:
