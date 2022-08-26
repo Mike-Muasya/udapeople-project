@@ -1,16 +1,4 @@
 ---
-- name: Update and upgrade packages
-  become: true
-  apt: 
-    upgrade: true
-    update_cache: true
-    cache_valid_time: 86400
-
-- name: remove unneeded deps
-  become: true
-  apt: 
-    autoremove: true
-
 - name: Install dependencies
   become: true
   apt: 
