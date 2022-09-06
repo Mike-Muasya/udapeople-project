@@ -366,6 +366,8 @@ jobs:
       - checkout
       - install-awscli
       - install-nodejs
+      - attach_workspace:
+          at: ~/
       - run:
           name: Save Old Workflow ID to a text file
           command: |
